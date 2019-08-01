@@ -4,7 +4,7 @@ const Table = require('cli-table');
 module.exports = mandy => {
   return {
     deployInfo: () => {
-      let { log, config, customConfig } = mandy;
+      let { log, config } = mandy;
 
       // 输出部署信息
       log.g('\n🛠  部署信息：');
@@ -20,8 +20,8 @@ module.exports = mandy => {
   > 操作人：${config.author}`
       );
 
-      if (customConfig.deploy && customConfig.deploy.info) {
-        log.g(customConfig.deploy.info)
+      if (config.tips && config.tips.deployInfo) {
+        log.g(config.tips.deployInfo)
       } else {
         log.g(
         `
@@ -36,14 +36,14 @@ module.exports = mandy => {
 
                 - 自定义提醒 - 
 
-               ✨  Good luck! ✨
+              ✨  Good luck! ✨
       `
         );
       }
     },
 
     rollbackInfo: () => {
-      let { log, config, customConfig } = mandy;
+      let { log, config } = mandy;
       let { serverCurrentRelease, serverReleases } = config;
       let releasesTable = new Table({
         head: ['sn', 'Release name', 'sn', 'Release name']
@@ -77,8 +77,8 @@ module.exports = mandy => {
   > 操作人：${config.author}
       `);
 
-      if (customConfig.rollback && customConfig.rollback.info) {
-        log.g(customConfig.rollback.info);
+      if (config.tips && config.tips.rollbackInfo) {
+        log.g(config.tips.rollbackInfo);
       }
 
       log.g('\n📦  可回滚版本:');
